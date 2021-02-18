@@ -1,22 +1,18 @@
 import { useState } from "react";
-import { styled } from "styled-component";
-import { Router } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Main from "./components/Main";
-import Question from "./components/Question";
+import QuestionPage from "./components/QuestionPage";
 import Result from "./components/Result";
 
 const App = () => {
   return (
-    <Container>
-      <Main />
-      <Question />
-    </Container>
+    <Router>
+      <Route exact path="/" component={Main} />
+      <Route path="/result" component={Result} />
+      <Route path="/start" component={QuestionPage} />
+    </Router>
   );
 };
-
-const Container = styled.div`
-  background-color: black;
-`;
 
 export default App;
