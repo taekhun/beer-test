@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { styled } from "styled-component";
+import { Router } from "react-router-dom";
 
-function App() {
+import Main from "./components/Main";
+import Question from "./components/Question";
+import Result from "./components/Result";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Main />
+      <Question />
+    </Container>
   );
-}
+};
+
+const Container = styled.div`
+  background-color: black;
+`;
 
 export default App;
