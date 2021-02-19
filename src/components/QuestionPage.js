@@ -3,7 +3,13 @@ import styled from "styled-components";
 import QnA from "../QnA.json";
 
 const QuestionPage = () => {
-  let qIndex = 0;
+  const [value, setValue] = useState({});
+  const [index, setIndex] = useState(0);
+
+  const clickHandler = (value) => {
+    alert(value);
+    setIndex(index + 1);
+  };
 
   return (
     <Background>
@@ -11,12 +17,13 @@ const QuestionPage = () => {
         <InnerContainer>
           <StatusBar />
           <Icon />
-          <Question>{QnA[qIndex].question}</Question>
+          <Question>{QnA[index].question}</Question>
           <AnswerBox>
-            {qIndex === 0 &&
-              QnA[qIndex].answers.map((item) => {
-                return <Answer>{item.answer}</Answer>;
-              })}
+            {QnA[index].answers.map(({ answer, value }) => {
+              return (
+                <Answer onClick={() => clickHandler(value)}>{answer}</Answer>
+              );
+            })}
           </AnswerBox>
         </InnerContainer>
       </Container>
