@@ -1,0 +1,45 @@
+[
+    {
+        "index":1,
+        "question" : "누구랑 마실거에요?",
+        "answers" : [
+            {
+                "answer":"혼자",
+                "value":"A"
+            }, 
+            {
+                "answer":"친구",
+                "value":"B"
+            }, 
+            {
+                "answer":"썸남(녀)",
+                "value":"C"
+            }, 
+            {
+                "answer":"애인",
+                "value":"D"
+            }]
+    },
+
+    {
+        "index":2,
+        "question" : "아아앙",
+        "answers" : [
+            {
+                "answer":"호호",
+                "value":"A"
+            }, 
+            {
+                "answer":"히히",
+                "value":"B"
+            }, 
+            {
+                "answer":"으으응ㅁ",
+                "value":"C"
+            }, 
+            {
+                "answer":"로로롤",
+                "value":"D"
+            }]
+    }
+]

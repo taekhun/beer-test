@@ -1,19 +1,22 @@
 import { useState } from "react";
 import styled from "styled-components";
+import QnA from "../QnA.json";
 
 const QuestionPage = () => {
+  let qIndex = 0;
+
   return (
     <Background>
       <Container>
         <InnerContainer>
           <StatusBar />
           <Icon />
-          <Question>오늘 누구랑 마셔요?</Question>
+          <Question>{QnA[qIndex].question}</Question>
           <AnswerBox>
-            <Answer>A</Answer>
-            <Answer>B</Answer>
-            <Answer>C</Answer>
-            <Answer>D</Answer>
+            {qIndex === 0 &&
+              QnA[qIndex].answers.map((item) => {
+                return <Answer>{item.answer}</Answer>;
+              })}
           </AnswerBox>
         </InnerContainer>
       </Container>
