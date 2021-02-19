@@ -1,14 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import QnA from "../QnA.json";
 
 const QuestionPage = () => {
-  const [value, setValue] = useState({});
+  const [value, setValue] = useState({ A: 0, B: 0, C: 0, D: 0 });
   const [index, setIndex] = useState(0);
+  const history = useHistory();
+  const MAX_INDEX = 2;
 
-  const clickHandler = (value) => {
-    alert(value);
-    setIndex(index + 1);
+  useEffect(() => {
+    if (index === MAX_INDEX) {
+      history.push("/result", { params: value });
+    }
+  }, [index]);
+
+  const answerClicked = (v) => {
+    if (index < MAX_INDEX) {
+      setValue({ ...value, [v]: 1 });
+      setIndex(index + 1);
+    }
   };
 
   return (
@@ -17,14 +28,20 @@ const QuestionPage = () => {
         <InnerContainer>
           <StatusBar />
           <Icon />
-          <Question>{QnA[index].question}</Question>
-          <AnswerBox>
-            {QnA[index].answers.map(({ answer, value }) => {
-              return (
-                <Answer onClick={() => clickHandler(value)}>{answer}</Answer>
-              );
-            })}
-          </AnswerBox>
+          {index < MAX_INDEX && (
+            <>
+              <Question>{QnA[index].question}</Question>
+              <AnswerBox>
+                {QnA[index].answers.map(({ answer, value }) => {
+                  return (
+                    <Answer onClick={() => answerClicked(value)}>
+                      {answer}
+                    </Answer>
+                  );
+                })}
+              </AnswerBox>
+            </>
+          )}
         </InnerContainer>
       </Container>
     </Background>
