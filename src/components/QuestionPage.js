@@ -7,10 +7,10 @@ const QuestionPage = () => {
   const [score, setScore] = useState({
     //낮을수록 전자(Larger, Light, Fruity, Creamy)
     //높을수록 후자(Ale, Heavy, Not Fruity, Crispy)
-    LargerOrAle: 0,
-    Drinkability: 0,
-    Fruity: 0,
-    Alcohol: 0,
+    largerOrAle: 0,
+    drinkability: 0,
+    fruity: 0,
+    alcohol: 0,
   });
   const [index, setIndex] = useState(0);
   const history = useHistory();

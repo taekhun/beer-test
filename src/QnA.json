@@ -6,37 +6,37 @@
             {
                 "answer":"너무 좋아요!",
                 "score":{
-                    "LargerOrAle":0,
-                    "Drinkability":5,
-                    "Fruity":0,
-                    "Alchol":2
+                    "largerOrAle":0,
+                    "drinkability":5,
+                    "fruity":0,
+                    "alchol":2
                 }
             },
             {
                 "answer":"그냥 그래요",
                 "score":{
-                    "LargerOrAle":0,
-                    "Drinkability":0,
-                    "Fruity":0,
-                    "Alchol":0
+                    "largerOrAle":0,
+                    "drinkability":0,
+                    "fruity":0,
+                    "alchol":0
                 }
             }, 
             {
                 "answer":"따분해요",
                 "score":{
-                    "LargerOrAle":0,
-                    "Drinkability":0,
-                    "Fruity":0,
-                    "Alchol":0
+                    "largerOrAle":0,
+                    "drinkability":0,
+                    "fruity":0,
+                    "alchol":0
                 }
             },
             {
                 "answer":"우울해요",
                 "score":{
-                    "LargerOrAle":0,
-                    "Drinkability":5,
-                    "Fruity":0,
-                    "Alchol":0
+                    "largerOrAle":0,
+                    "drinkability":5,
+                    "fruity":0,
+                    "alchol":0
                 }
             }
         ]   
@@ -49,37 +49,37 @@
             {
                 "answer":"퇴근 후 시원하게 한 잔!",
                 "score":{
-                    "LargerOrAle":0,
-                    "Drinkability":5,
-                    "Fruity":0,
-                    "Alchol":2
+                    "largerOrAle":0,
+                    "drinkability":5,
+                    "fruity":0,
+                    "alchol":2
                 }
             },
             {
                 "answer":"영화 보면서 한 잔!",
                 "score":{
-                    "LargerOrAle":0,
-                    "Drinkability":5,
-                    "Fruity":0,
-                    "Alchol":0
+                    "largerOrAle":0,
+                    "drinkability":5,
+                    "fruity":0,
+                    "alchol":0
                 }
             }, 
             {
                 "answer":"방에서 친구랑 한 잔!",
                 "score":{
-                    "LargerOrAle":0,
-                    "Drinkability":5,
-                    "Fruity":0,
-                    "Alchol":0
+                    "largerOrAle":0,
+                    "drinkability":5,
+                    "fruity":0,
+                    "alchol":0
                 }
             },
             {
                 "answer":"이성과 분위기 있게 한 잔!",
                 "score":{
-                    "LargerOrAle":0,
-                    "Drinkability":5,
-                    "Fruity":0,
-                    "Alchol":0
+                    "largerOrAle":0,
+                    "drinkability":5,
+                    "fruity":0,
+                    "alchol":0
                 }
             }
         ]   
@@ -91,28 +91,28 @@
             {
                 "answer":"잘 못 마셔요",
                 "score":{
-                    "LargerOrAle":5,
-                    "Drinkability":0,
-                    "Fruity":0,
-                    "Alchol":0
+                    "largerOrAle":5,
+                    "drinkability":0,
+                    "fruity":0,
+                    "alchol":0
                 }
             },
             {
                 "answer":"보통이에요",
                 "score":{
-                    "LargerOrAle":5,
-                    "Drinkability":0,
-                    "Fruity":0,
-                    "Alchol":3
+                    "largerOrAle":5,
+                    "drinkability":0,
+                    "fruity":0,
+                    "alchol":3
                 }
             }, 
             {
                 "answer":"잘 마셔요!",
                 "score":{
-                    "LargerOrAle":0,
-                    "Drinkability":0,
-                    "Fruity":0,
-                    "Alchol":5
+                    "largerOrAle":0,
+                    "drinkability":0,
+                    "fruity":0,
+                    "alchol":5
                 }
             }
         ]  
