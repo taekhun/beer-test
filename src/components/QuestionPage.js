@@ -4,22 +4,30 @@ import styled from "styled-components";
 import QnA from "../QnA.json";
 
 const QuestionPage = () => {
-  const [value, setValue] = useState({ A: 0, B: 0, C: 0, D: 0 });
+  const [score, setScore] = useState({
+    //낮을수록 전자(Larger, Light, Fruity, Creamy)
+    //높을수록 후자(Ale, Heavy, Not Fruity, Crispy)
+    LargerOrAle: 0,
+    Drinkability: 0,
+    Fruity: 0,
+    Alcohol: 0,
+  });
   const [index, setIndex] = useState(0);
   const history = useHistory();
-  const MAX_INDEX = 2;
+  const MAX_INDEX = QnA.length;
 
   useEffect(() => {
     if (index === MAX_INDEX) {
-      history.push("/result", { params: value });
+      history.push("/result", { params: score });
     }
   }, [index]);
 
-  const answerClicked = (valu) => {
-    if (index < MAX_INDEX) {
-      setValue((prevState) => ({
-        ...prevState,
-        [value]: prevState[value] + 1,
+  const answerClicked = (item) => {
+    console.log(item);
+    for (const key in item) {
+      setScore((prev) => ({
+        ...prev,
+        [key]: prev[key] + item[key],
       }));
       setIndex(index + 1);
     }
@@ -35,9 +43,9 @@ const QuestionPage = () => {
             <>
               <Question>{QnA[index].question}</Question>
               <AnswerBox>
-                {QnA[index].answers.map(({ answer, value }) => {
+                {QnA[index].answers.map(({ answer, score }) => {
                   return (
-                    <Answer onClick={() => answerClicked(value)}>
+                    <Answer onClick={() => answerClicked(score)}>
                       {answer}
                     </Answer>
                   );

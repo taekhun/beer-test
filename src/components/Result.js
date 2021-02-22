@@ -7,10 +7,10 @@ const Result = () => {
   return (
     <div>
       <h1>RESULT PAGE</h1>
-      <h2>{myparam.A}</h2>
-      <h2>{myparam.B}</h2>
-      <h2>{myparam.C}</h2>
-      <h2>{myparam.D}</h2>
+      <h2>{myparam.LargerOrAle}</h2>
+      <h2>{myparam.Drinkability}</h2>
+      <h2>{myparam.Fruity}</h2>
+      <h2>{myparam.Alcohol}</h2>
     </div>
   );
 };
