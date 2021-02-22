@@ -15,9 +15,12 @@ const QuestionPage = () => {
     }
   }, [index]);
 
-  const answerClicked = (v) => {
+  const answerClicked = (valu) => {
     if (index < MAX_INDEX) {
-      setValue({ ...value, [v]: 1 });
+      setValue((prevState) => ({
+        ...prevState,
+        [value]: prevState[value] + 1,
+      }));
       setIndex(index + 1);
     }
   };
