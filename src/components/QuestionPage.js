@@ -8,12 +8,12 @@ import QnA from "../QnA.json";
 
 const QuestionPage = () => {
   const [score, setScore] = useState({
-    //낮을수록 전자(Larger, Light, Fruity, Creamy)
-    //높을수록 후자(Ale, Heavy, Not Fruity, Crispy)
-    largerOrAle: 0,
-    drinkability: 0,
-    fruity: 0,
-    alcohol: 0,
+    //낮을수록 전자(E,S,T,F)
+    //높을수록 후자(I,N,F,P)
+    E_I: 0,
+    S_N: 0,
+    T_F: 0,
+    J_P: 0,
   });
   const [index, setIndex] = useState(0);
   const history = useHistory();
@@ -110,10 +110,10 @@ const StatusBar = styled.div`
 //Body
 const Icon = styled.img`
   width: 150px;
-  margin-bottom: 24px;
+  margin: 24px 0;
 `;
 const Question = styled.h1`
-  margin: 24px 0;
+  margin: 12px 0;
   font-size: 24px;
 `;
 const AnswerBox = styled.div`
