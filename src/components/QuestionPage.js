@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import CSSreset from "styled-reset";
-import beerLogoSrc from "../image/beer-logo.png";
+import logoSrc from "../image/beer-logo.png";
 
 import QnA from "../QnA.json";
 
@@ -49,7 +49,7 @@ const QuestionPage = () => {
           {index < MAX_INDEX && (
             <>
               <Question>{QnA[index].question}</Question>
-              <Icon src={beerLogoSrc} />
+              <Icon src={logoSrc} />
 
               <AnswerBox>
                 {QnA[index].answers.map(({ answer, score }) => {
@@ -85,16 +85,16 @@ const InnerContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 320px;
+  margin: 0 auto;
 `;
 
 //Navbar
 const Navbar = styled.div`
-  width: 80%;
-  min-width: 330px;
-  max-width: 500px;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 48px 0 24px;
 `;
 const QuestNumber = styled.div`
@@ -121,9 +121,9 @@ const AnswerBox = styled.div`
   flex-direction: column;
 `;
 const AnswerButton = styled.button`
-  min-width: 300px;
-  margin-top: 4px;
-  height: 50px;
+  min-width: 310px;
+  margin-top: 10px;
+  height: 88px;
   outline: none;
   border: none;
   border-radius: 8px;

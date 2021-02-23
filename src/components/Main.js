@@ -66,14 +66,15 @@ const Logo = styled.img`
 `;
 const StartButton = styled.button`
   margin-top: 24px;
-  width: 128px;
-  height: 40px;
+  width: 200px;
+  height: 50px;
   outline: none;
   border: none;
   border-radius: 8px;
   color: white;
   font-size: 18px;
   background-color: black;
+  /* background-color: #99d4ff; */
   &:hover {
     background-color: #33a8ff;
   }
