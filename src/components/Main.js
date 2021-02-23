@@ -1,12 +1,17 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
+import CSSreset from "styled-reset";
 import { Link } from "react-router-dom";
+import beerLogoSrc from "../image/beer-logo.png";
 
 const Main = () => {
   return (
     <Background>
+      <GlobalStyles />
       <Container>
         <InnerContainer>
-          <Title>오늘의 맥주</Title>
+          <Title>#수제맥주 테스트</Title>
+          <SubTitle>나와 어울리는 수제맥주는?</SubTitle>
+          <Logo src={beerLogoSrc} />
           <Link to="/start">
             <StartButton>시작하기</StartButton>
           </Link>
@@ -17,12 +22,20 @@ const Main = () => {
 };
 
 //Styling Area
-const Background = styled.div`
-  padding: 0;
-  margin: 0%;
+const GlobalStyles = createGlobalStyle`
+  ${CSSreset};
+
+  body {
+    @import url('https://fonts.googleapis.com/earlyaccess/notosanskr.css');
+    font-family: "Noto Sans KR", sans-serif !important;
+  }
 `;
 
-const Container = styled.div``;
+const Background = styled.div``;
+
+const Container = styled.div`
+  margin: 0 auto;
+`;
 
 const InnerContainer = styled.div`
   display: flex;
@@ -30,23 +43,40 @@ const InnerContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  width: 768px;
-  height: 768px;
-  /* background-color: gray; */
-  border: outset;
+  height: 670px;
 
-  @media (min-width: 320px) and (max-width: 480px) {
+  /* @media (min-width: 320px) and (max-width: 480px) {
     width: 320px;
     height: 320px;
-  }
+  } */
 `;
 
-const Title = styled.div``;
-
+const Title = styled.h2`
+  font-size: 36px;
+  font-weight: 500;
+`;
+const SubTitle = styled.p`
+  margin-top: 12px;
+  font-weight: 350;
+  font-size: 18px;
+`;
+const Logo = styled.img`
+  margin-top: 24px 0;
+  height: 280px;
+`;
 const StartButton = styled.button`
-  width: 64px;
-  height: 24px;
+  margin-top: 24px;
+  width: 128px;
+  height: 40px;
   outline: none;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 18px;
+  background-color: black;
+  &:hover {
+    background-color: #33a8ff;
+  }
 `;
 
 export default Main;

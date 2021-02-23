@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
+import CSSreset from "styled-reset";
+import beerLogoSrc from "../image/beer-logo.png";
+
 import QnA from "../QnA.json";
 
 const QuestionPage = () => {
@@ -23,11 +26,10 @@ const QuestionPage = () => {
   }, [index]);
 
   const answerClicked = (item) => {
-    console.log(item);
-    for (const key in item) {
+    for (const prop in item) {
       setScore((prev) => ({
         ...prev,
-        [key]: prev[key] + item[key],
+        [prop]: prev[prop] + item[prop],
       }));
       setIndex(index + 1);
     }
@@ -35,19 +37,26 @@ const QuestionPage = () => {
 
   return (
     <Background>
+      <GlobalStyles />
       <Container>
         <InnerContainer>
-          <StatusBar />
-          <Icon />
+          <Navbar>
+            <QuestNumber>Q{index + 1}.</QuestNumber>
+            <StatusBar>
+              {index + 1}/{MAX_INDEX}
+            </StatusBar>
+          </Navbar>
           {index < MAX_INDEX && (
             <>
               <Question>{QnA[index].question}</Question>
+              <Icon src={beerLogoSrc} />
+
               <AnswerBox>
                 {QnA[index].answers.map(({ answer, score }) => {
                   return (
-                    <Answer onClick={() => answerClicked(score)}>
+                    <AnswerButton onClick={() => answerClicked(score)}>
                       {answer}
-                    </Answer>
+                    </AnswerButton>
                   );
                 })}
               </AnswerBox>
@@ -60,25 +69,69 @@ const QuestionPage = () => {
 };
 
 //Styling Area
+const GlobalStyles = createGlobalStyle`
+  ${CSSreset};
+
+  body {
+    @import url('https://fonts.googleapis.com/earlyaccess/notosanskr.css');
+    font-family: "Noto Sans KR", sans-serif !important;
+  }
+`;
 const Background = styled.div``;
-const Container = styled.div``;
+const Container = styled.div`
+  margin: 0 auto;
+`;
 const InnerContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-const StatusBar = styled.div`
-  border-style: ridge;
-  width: 108px;
-  height: 8px;
+
+//Navbar
+const Navbar = styled.div`
+  width: 80%;
+  min-width: 330px;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 48px 0 24px;
 `;
-const Icon = styled.i``;
-const Question = styled.div``;
+const QuestNumber = styled.div`
+  color: #33a8ff;
+  font-size: 30px;
+  font-weight: 700;
+`;
+const StatusBar = styled.div`
+  color: #b7b7b7;
+  font-size: 14px;
+`;
+
+//Body
+const Icon = styled.img`
+  width: 150px;
+  margin-bottom: 24px;
+`;
+const Question = styled.h1`
+  margin: 24px 0;
+  font-size: 24px;
+`;
 const AnswerBox = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const Answer = styled.button`
-  width: 158px;
+const AnswerButton = styled.button`
+  min-width: 300px;
+  margin-top: 4px;
+  height: 50px;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 18px;
+  background-color: black;
+  &:hover {
+    background-color: #33a8ff;
+  }
 `;
 export default QuestionPage;
