@@ -15,68 +15,7 @@ const Result = () => {
   }, []);
 
   const location = useLocation();
-  const { E_I, S_N, T_F, J_P } = location.state.params;
-  let beerResult;
-  if (E_I >= 5) {
-    beerResult = "IPA";
-  } else {
-    beerResult = "Cass";
-  }
-
-  //Styled Component
-  //Outer
-  const GlobalStyles = createGlobalStyle`
-    ${CSSreset};
-    body {
-      @import url('https://fonts.googleapis.com/earlyaccess/notosanskr.css');
-      font-family: "Noto Sans KR", sans-serif !important;
-    }
-`;
-  const Container = styled.div``;
-  const InnerContainer = styled.div`
-    max-width: 320px;
-    margin: 0 auto;
-  `;
-
-  //Header
-  const Header = styled.div`
-    display: flex;
-    justify-content: left;
-  `;
-  const Logo = styled.img`
-    width: 70px;
-  `;
-  const Title = styled.h1`
-    font-size: 28px;
-    margin-left: 12px;
-  `;
-
-  //Loading Page
-  const LoadingPage = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  `;
-  const LoadingImg = styled.img``;
-  const LoadingTitle = styled.h1``;
-
-  //Result Page
-  const ResultPage = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  `;
-  const BeerImg = styled.img`
-    margin-top: 24px;
-    width: 240px;
-  `;
-  const BeerTitle = styled.h1`
-    margin-top: 24px;
-    font-size: 24px;
-  `;
-  const BeerSubtitle = styled.h2``;
-  const BeerDesc = styled.h3``;
-  const ShareBox = styled.div``;
+  let result = location.state.params;
 
   return (
     <>
@@ -95,7 +34,7 @@ const Result = () => {
           ) : (
             <ResultPage>
               <BeerImg src={indicaSrc} />
-              <BeerTitle>{beerResult}</BeerTitle>
+              <BeerTitle>{result}</BeerTitle>
               <BeerSubtitle />
               <BeerDesc />
               <ShareBox />
@@ -106,5 +45,60 @@ const Result = () => {
     </>
   );
 };
+
+//Styled Component
+//Outer
+const GlobalStyles = createGlobalStyle`
+    ${CSSreset};
+    body {
+      @import url('https://fonts.googleapis.com/earlyaccess/notosanskr.css');
+      font-family: "Noto Sans KR", sans-serif !important;
+    }
+`;
+const Container = styled.div``;
+const InnerContainer = styled.div`
+  max-width: 320px;
+  margin: 0 auto;
+`;
+
+//Header
+const Header = styled.div`
+  display: flex;
+  justify-content: left;
+`;
+const Logo = styled.img`
+  width: 70px;
+`;
+const Title = styled.h1`
+  font-size: 28px;
+  margin-left: 12px;
+`;
+
+//Loading Page
+const LoadingPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const LoadingImg = styled.img``;
+const LoadingTitle = styled.h1``;
+
+//Result Page
+const ResultPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const BeerImg = styled.img`
+  margin-top: 24px;
+  width: 240px;
+`;
+const BeerTitle = styled.h1`
+  margin-top: 24px;
+  font-size: 24px;
+`;
+const BeerSubtitle = styled.h2``;
+const BeerDesc = styled.h3``;
+const ShareBox = styled.div``;
 
 export default Result;

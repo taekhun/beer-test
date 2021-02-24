@@ -18,10 +18,15 @@ const QuestionPage = () => {
   const [index, setIndex] = useState(0);
   const history = useHistory();
   const MAX_INDEX = QnA.length;
+  let result = "";
 
   useEffect(() => {
     if (index === MAX_INDEX) {
-      history.push("/result", { params: score });
+      score.E_I < 2 ? (result += "E") : (result += "I");
+      score.S_N < 2 ? (result += "S") : (result += "N");
+      score.T_F < 2 ? (result += "T") : (result += "F");
+      score.J_P < 2 ? (result += "J") : (result += "P");
+      history.push("/result", { params: result });
     }
   }, [index]);
 
@@ -50,7 +55,6 @@ const QuestionPage = () => {
             <>
               <Question>{QnA[index].question}</Question>
               <Icon src={logoSrc} />
-
               <AnswerBox>
                 {QnA[index].answers.map(({ answer, score }) => {
                   return (
@@ -85,7 +89,7 @@ const InnerContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 320px;
+  width: 300px;
   margin: 0 auto;
 `;
 
@@ -114,21 +118,22 @@ const Icon = styled.img`
 `;
 const Question = styled.h1`
   margin: 12px 0;
-  font-size: 24px;
+  font-size: 18px;
+  font-weight: 600;
 `;
 const AnswerBox = styled.div`
   display: flex;
   flex-direction: column;
 `;
 const AnswerButton = styled.button`
-  min-width: 310px;
+  width: 300px;
   margin-top: 10px;
   height: 88px;
   outline: none;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   background-color: black;
   &:hover {
     background-color: #33a8ff;

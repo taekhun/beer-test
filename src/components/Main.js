@@ -9,8 +9,8 @@ const Main = () => {
       <GlobalStyles />
       <Container>
         <InnerContainer>
-          <Title>#수제맥주 테스트</Title>
-          <SubTitle>나와 어울리는 수제맥주는?</SubTitle>
+          <Title>#맥주 테스트</Title>
+          <SubTitle>나와 닮은 맥주는?</SubTitle>
           <Logo src={beerLogoSrc} />
           <Link to="/start">
             <StartButton>시작하기</StartButton>
@@ -52,7 +52,7 @@ const InnerContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 36px;
+  font-size: 30px;
   font-weight: 500;
 `;
 const SubTitle = styled.p`
