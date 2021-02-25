@@ -1,7 +1,10 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import styled, { createGlobalStyle } from "styled-components";
 import CSSreset from "styled-reset";
+
+import KakaoShareButton from "./KakaoShareButton";
 import indicaSrc from "../image/indica.png";
 import logoSrc from "../image/beer-logo.png";
 
@@ -20,6 +23,9 @@ const Result = () => {
   return (
     <>
       <GlobalStyles />
+      <Helmet>
+        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+      </Helmet>
       <Container>
         <InnerContainer>
           <Header>
@@ -37,7 +43,9 @@ const Result = () => {
               <BeerTitle>{result}</BeerTitle>
               <BeerSubtitle />
               <BeerDesc />
-              <ShareBox />
+              <ShareBox>
+                <KakaoShareButton />
+              </ShareBox>
             </ResultPage>
           )}
         </InnerContainer>

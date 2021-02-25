@@ -2,8 +2,22 @@ import styled, { createGlobalStyle } from "styled-components";
 import CSSreset from "styled-reset";
 import { Link } from "react-router-dom";
 import beerLogoSrc from "../image/beer-logo.png";
+import { useEffect } from "react";
+
+import KakaoShareButton from "./KakaoShareButton";
+import { Helmet } from "react-helmet";
 
 const Main = () => {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://developers.kakao.com/sdk/js/kakao.js";
+    script.async = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <>
       <GlobalStyles />
@@ -16,6 +30,7 @@ const Main = () => {
             <StartButton>시작하기</StartButton>
           </Link>
         </InnerContainer>
+        <KakaoShareButton />
       </Container>
     </>
   );
