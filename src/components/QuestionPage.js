@@ -16,7 +16,6 @@ const QuestionPage = () => {
     J_P: 0,
   });
   const [index, setIndex] = useState(0);
-
   const history = useHistory();
   const MAX_INDEX = QnA.length;
 
@@ -35,6 +34,11 @@ const QuestionPage = () => {
 
   //마지막에 score를 파라미터로 보냄
   useEffect(() => {
+    //Carousel 슬라이드 이동
+    const carousel = document.querySelector("#carousel");
+    carousel.style.transition = "all 0.5s ease-in-out";
+    carousel.style.transform = `translateX(-${index}00%)`;
+
     if (index === MAX_INDEX) {
       score.E_I < 2 ? (result += "E") : (result += "I");
       score.S_N < 2 ? (result += "S") : (result += "N");
@@ -48,28 +52,36 @@ const QuestionPage = () => {
     <>
       <GlobalStyles />
       <Container>
-        <InnerContainer id="fadein">
-          <Navbar>
-            <QuestNumber>Q{index + 1}.</QuestNumber>
-            <StatusBar>
-              {index + 1}/{MAX_INDEX}
-            </StatusBar>
-          </Navbar>
-          {index < MAX_INDEX && (
-            <QABox>
-              <Question>{QnA[index].question}</Question>
-              <Icon src={logoSrc} />
-              <AnswerBox>
-                {QnA[index].answers.map(({ answer, score }) => {
-                  return (
-                    <AnswerButton onClick={() => answerClicked(score)}>
-                      {answer}
-                    </AnswerButton>
-                  );
-                })}
-              </AnswerBox>
-            </QABox>
-          )}
+        <InnerContainer>
+          <CarouselContainer id="carousel">
+            {QnA.map(({ index }) => {
+              return (
+                <CarouselBox>
+                  <Navbar>
+                    <QuestNumber>Q{index + 1}.</QuestNumber>
+                    <StatusBar>
+                      {index + 1}/{MAX_INDEX}
+                    </StatusBar>
+                  </Navbar>
+                  {index < MAX_INDEX && (
+                    <QABox>
+                      <Question>{QnA[index].question}</Question>
+                      <Icon src={logoSrc} />
+                      <AnswerBox>
+                        {QnA[index].answers.map(({ answer, score }) => {
+                          return (
+                            <AnswerButton onClick={() => answerClicked(score)}>
+                              {answer}
+                            </AnswerButton>
+                          );
+                        })}
+                      </AnswerBox>
+                    </QABox>
+                  )}
+                </CarouselBox>
+              );
+            })}
+          </CarouselContainer>
         </InnerContainer>
       </Container>
     </>
@@ -86,21 +98,19 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 const Container = styled.div`
-  margin: 0 auto;
+  /* overflow: hidden; */
 `;
 const InnerContainer = styled.div`
   width: 300px;
   margin: 0 auto;
-  animation: fadein 2s;
-  @keyframes fadein {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
+  overflow: hidden;
 `;
+
+//Carousl Container
+const CarouselContainer = styled.div`
+  display: flex;
+`;
+const CarouselBox = styled.div``;
 
 //Navbar
 const Navbar = styled.div`
