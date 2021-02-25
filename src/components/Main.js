@@ -5,7 +5,7 @@ import beerLogoSrc from "../image/beer-logo.png";
 
 const Main = () => {
   return (
-    <Background>
+    <>
       <GlobalStyles />
       <Container>
         <InnerContainer>
@@ -17,7 +17,7 @@ const Main = () => {
           </Link>
         </InnerContainer>
       </Container>
-    </Background>
+    </>
   );
 };
 
@@ -30,8 +30,6 @@ const GlobalStyles = createGlobalStyle`
     font-family: "Noto Sans KR", sans-serif !important;
   }
 `;
-
-const Background = styled.div``;
 
 const Container = styled.div`
   margin: 0 auto;

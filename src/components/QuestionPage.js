@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import CSSreset from "styled-reset";
@@ -8,28 +8,21 @@ import QnA from "../QnA.json";
 
 const QuestionPage = () => {
   const [score, setScore] = useState({
-    //낮을수록 전자(E,S,T,F)
-    //높을수록 후자(I,N,F,P)
+    //낮을수록 앞(E,S,T,F)
+    //높을수록 뒤(I,N,F,P)
     E_I: 0,
     S_N: 0,
     T_F: 0,
     J_P: 0,
   });
   const [index, setIndex] = useState(0);
+
   const history = useHistory();
   const MAX_INDEX = QnA.length;
+
   let result = "";
 
-  useEffect(() => {
-    if (index === MAX_INDEX) {
-      score.E_I < 2 ? (result += "E") : (result += "I");
-      score.S_N < 2 ? (result += "S") : (result += "N");
-      score.T_F < 2 ? (result += "T") : (result += "F");
-      score.J_P < 2 ? (result += "J") : (result += "P");
-      history.push("/result", { params: result });
-    }
-  }, [index]);
-
+  //클릭시 score count && index++
   const answerClicked = (item) => {
     for (const prop in item) {
       setScore((prev) => ({
@@ -40,11 +33,22 @@ const QuestionPage = () => {
     }
   };
 
+  //마지막에 score를 파라미터로 보냄
+  useEffect(() => {
+    if (index === MAX_INDEX) {
+      score.E_I < 2 ? (result += "E") : (result += "I");
+      score.S_N < 2 ? (result += "S") : (result += "N");
+      score.T_F < 2 ? (result += "T") : (result += "F");
+      score.J_P < 2 ? (result += "J") : (result += "P");
+      history.push("/result", { params: result });
+    }
+  }, [index]);
+
   return (
-    <Background>
+    <>
       <GlobalStyles />
       <Container>
-        <InnerContainer>
+        <InnerContainer id="fadein">
           <Navbar>
             <QuestNumber>Q{index + 1}.</QuestNumber>
             <StatusBar>
@@ -52,7 +56,7 @@ const QuestionPage = () => {
             </StatusBar>
           </Navbar>
           {index < MAX_INDEX && (
-            <>
+            <QABox>
               <Question>{QnA[index].question}</Question>
               <Icon src={logoSrc} />
               <AnswerBox>
@@ -64,11 +68,11 @@ const QuestionPage = () => {
                   );
                 })}
               </AnswerBox>
-            </>
+            </QABox>
           )}
         </InnerContainer>
       </Container>
-    </Background>
+    </>
   );
 };
 
@@ -81,16 +85,21 @@ const GlobalStyles = createGlobalStyle`
     font-family: "Noto Sans KR", sans-serif !important;
   }
 `;
-const Background = styled.div``;
 const Container = styled.div`
   margin: 0 auto;
 `;
 const InnerContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 300px;
   margin: 0 auto;
+  animation: fadein 2s;
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 //Navbar
@@ -112,6 +121,12 @@ const StatusBar = styled.div`
 `;
 
 //Body
+const QABox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const Icon = styled.img`
   width: 150px;
   margin: 24px 0;
