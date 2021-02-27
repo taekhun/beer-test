@@ -4,7 +4,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import CSSreset from "styled-reset";
 import logoSrc from "../image/beer-logo.png";
 
-import QnA from "../QnA.json";
+import QnA from "../assets/QnA.json";
 
 const QuestionPage = () => {
   const [score, setScore] = useState({
@@ -34,11 +34,7 @@ const QuestionPage = () => {
 
   //마지막에 score를 파라미터로 보냄
   useEffect(() => {
-    //Carousel 슬라이드 이동
-    const carousel = document.querySelector("#carousel");
-    carousel.style.transition = "all 0.5s ease-in-out";
-    carousel.style.transform = `translateX(-${index}00%)`;
-
+    //마지막 index => result 페이지
     if (index === MAX_INDEX) {
       score.E_I < 2 ? (result += "E") : (result += "I");
       score.S_N < 2 ? (result += "S") : (result += "N");
@@ -46,6 +42,11 @@ const QuestionPage = () => {
       score.J_P < 2 ? (result += "J") : (result += "P");
       history.push("/result", { params: result });
     }
+
+    //Carousel 슬라이드 이동
+    const carousel = document.querySelector("#carousel");
+    carousel.style.transition = "all 0.5s ease-in-out";
+    carousel.style.transform = `translateX(-${index}00%)`;
   }, [index]);
 
   return (

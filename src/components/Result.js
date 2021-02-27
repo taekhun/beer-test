@@ -1,31 +1,40 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+import { useHistory } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import CSSreset from "styled-reset";
 
+import Loader from "./Loadings/Loader";
 import KakaoShareButton from "./KakaoShareButton";
 import indicaSrc from "../image/indica.png";
 import logoSrc from "../image/beer-logo.png";
 
 const Result = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
+
+  let isValid = false;
+  const history = useHistory();
+  const location = useLocation();
+  let result = "";
+
+  try {
+    result = location.state.params;
+    isValid = true;
+  } catch (e) {
+    console.error(e);
+  }
 
   useEffect(() => {
+    //로딩 3초후 결과화면
     setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+      setLoading(false);
+    }, 5000);
   }, []);
-
-  const location = useLocation();
-  let result = location.state.params;
 
   return (
     <>
+      {!isValid && history.push("/")}
       <GlobalStyles />
-      <Helmet>
-        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-      </Helmet>
       <Container>
         <InnerContainer>
           <Header>
@@ -34,8 +43,7 @@ const Result = () => {
           </Header>
           {isLoading ? (
             <LoadingPage>
-              <LoadingImg />
-              <LoadingTitle>로딩중...</LoadingTitle>
+              <Loader />
             </LoadingPage>
           ) : (
             <ResultPage>
@@ -87,6 +95,7 @@ const LoadingPage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 100px;
 `;
 const LoadingImg = styled.img``;
 const LoadingTitle = styled.h1``;

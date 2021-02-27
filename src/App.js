@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
 import Main from "./components/Main";
 import QuestionPage from "./components/QuestionPage";
 import Result from "./components/Result";

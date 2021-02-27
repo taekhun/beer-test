@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 
 const KakaoShareButton = () => {
   useEffect(() => {
@@ -36,12 +37,17 @@ const KakaoShareButton = () => {
     }
   };
   return (
-    <div className="kakao-share-button">
-      <button id="kakao-link-btn">
-        {/* <img src="/icons/kakao.png" alt="kakao-share-icon" /> */}
-        카카오톡에 공유하기
-      </button>
-    </div>
+    <>
+      <Helmet>
+        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+      </Helmet>
+      <div className="kakao-share-button">
+        <button id="kakao-link-btn">
+          {/* <img src="/icons/kakao.png" alt="kakao-share-icon" /> */}
+          카카오톡에 공유하기
+        </button>
+      </div>
+    </>
   );
 };
 export default KakaoShareButton;
