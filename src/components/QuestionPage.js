@@ -43,8 +43,9 @@ const QuestionPage = () => {
       history.push("/result", { params: result });
     }
 
-    //Carousel 슬라이드 이동
     const carousel = document.querySelector("#carousel");
+
+    //Carousel 슬라이드 이동
     carousel.style.transition = "all 0.5s ease-in-out";
     carousel.style.transform = `translateX(-${index}00%)`;
   }, [index]);
@@ -66,7 +67,10 @@ const QuestionPage = () => {
                   </Navbar>
                   {index < MAX_INDEX && (
                     <QABox>
-                      <Question>{QnA[index].question}</Question>
+                      <Question>
+                        {/* {QnA[index].question.replace("\n", "\\r\\n")} */}
+                        {QnA[index].question}
+                      </Question>
                       <Icon src={logoSrc} />
                       <AnswerBox>
                         {QnA[index].answers.map(({ answer, score }) => {
@@ -77,6 +81,7 @@ const QuestionPage = () => {
                           );
                         })}
                       </AnswerBox>
+                      {/* <BackButton /> */}
                     </QABox>
                   )}
                 </CarouselBox>
@@ -103,6 +108,7 @@ const Container = styled.div`
 `;
 const InnerContainer = styled.div`
   width: 300px;
+  /* width: 90vw; */
   margin: 0 auto;
   overflow: hidden;
 `;
@@ -123,12 +129,12 @@ const Navbar = styled.div`
 `;
 const QuestNumber = styled.div`
   color: #33a8ff;
-  font-size: 30px;
+  font-size: 2rem;
   font-weight: 700;
 `;
 const StatusBar = styled.div`
   color: #b7b7b7;
-  font-size: 14px;
+  font-size: 1.2rem;
 `;
 
 //Body
@@ -144,7 +150,7 @@ const Icon = styled.img`
 `;
 const Question = styled.h1`
   margin: 12px 0;
-  font-size: 18px;
+  font-size: 1.2rem;
   font-weight: 600;
 `;
 const AnswerBox = styled.div`
@@ -152,6 +158,7 @@ const AnswerBox = styled.div`
   flex-direction: column;
 `;
 const AnswerButton = styled.button`
+  /* width: 90vw; */
   width: 300px;
   margin-top: 10px;
   height: 88px;
@@ -164,5 +171,9 @@ const AnswerButton = styled.button`
   &:hover {
     background-color: #33a8ff;
   }
+`;
+
+const BackButton = styled.button`
+  width: 30px;
 `;
 export default QuestionPage;

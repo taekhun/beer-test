@@ -1,17 +1,17 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import styled, { createGlobalStyle } from "styled-components";
 import CSSreset from "styled-reset";
 
-import Loader from "./Loadings/Loader";
+import Loader from "./LoadingBar/Loader";
 import KakaoShareButton from "./KakaoShareButton";
 import indicaSrc from "../image/indica.png";
 import logoSrc from "../image/beer-logo.png";
 
 const Result = () => {
   const [isLoading, setLoading] = useState(true);
-
   let isValid = false;
   const history = useHistory();
   const location = useLocation();
@@ -35,6 +35,9 @@ const Result = () => {
     <>
       {!isValid && history.push("/")}
       <GlobalStyles />
+      <Helmet>
+        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+      </Helmet>
       <Container>
         <InnerContainer>
           <Header>

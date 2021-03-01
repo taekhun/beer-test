@@ -18,7 +18,7 @@ const KakaoShareButton = () => {
         content: {
           title: "나와 닮은 맥주는?",
           description: "#mbti #맥주테스트",
-          imageUrl: "IMAGE_URL", // i.e. process.env.FETCH_URL + '/logo.png'
+          imageUrl: "/static/media/indica.2959c70a.png", // i.e. process.env.FETCH_URL + '/logo.png'
           link: {
             mobileWebUrl: window.location.href,
             webUrl: window.location.href,
