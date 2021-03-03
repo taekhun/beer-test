@@ -11,7 +11,7 @@ import indicaSrc from "../image/indica.png";
 import logoSrc from "../image/beer-logo.png";
 
 const Result = () => {
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
   let isValid = false;
   const history = useHistory();
   const location = useLocation();
@@ -27,13 +27,13 @@ const Result = () => {
   useEffect(() => {
     //로딩 3초후 결과화면
     setTimeout(() => {
-      setLoading(false);
+      history.push(`/result/${result}`);
+      setLoading(true);
     }, 5000);
   }, []);
-
   return (
     <>
-      {!isValid && history.push("/")}
+      {/* {!isValid && history.push("/")} */}
       <GlobalStyles />
       <Helmet>
         <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -44,14 +44,13 @@ const Result = () => {
             <Logo src={logoSrc} />
             {/* <Title>#수제맥주 테스트</Title> */}
           </Header>
-          {isLoading ? (
+          {!isLoading ? (
             <LoadingPage>
               <Loader />
             </LoadingPage>
           ) : (
             <ResultPage>
               <BeerImg src={indicaSrc} />
-              <BeerTitle>{result}</BeerTitle>
               <BeerSubtitle />
               <BeerDesc />
               <ShareBox>

@@ -40,7 +40,7 @@ const QuestionPage = () => {
       score.S_N < 2 ? (result += "S") : (result += "N");
       score.T_F < 2 ? (result += "T") : (result += "F");
       score.J_P < 2 ? (result += "J") : (result += "P");
-      history.push("/result", { params: result });
+      history.push(`/result/`, { params: result });
     }
 
     const carousel = document.querySelector("#carousel");
