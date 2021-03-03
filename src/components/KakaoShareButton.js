@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { useLocation } from "react-router-dom";
 
 const KakaoShareButton = () => {
+  const location = useLocation();
+  const beerInfo = location.state.beerInfo;
+
   useEffect(() => {
     createKakaoButton();
   }, []);
@@ -16,9 +20,9 @@ const KakaoShareButton = () => {
         container: "#kakao-link-btn",
         objectType: "feed",
         content: {
-          title: "나와 닮은 맥주는?",
-          description: "#mbti #맥주테스트",
-          imageUrl: "/static/media/indica.2959c70a.png", // i.e. process.env.FETCH_URL + '/logo.png'
+          title: `${beerInfo.beerTitle}`,
+          description: "나와 닮은 맥주는?",
+          imageUrl: `${beerInfo.beerImg}`, // i.e. process.env.FETCH_URL + '/logo.png'
           link: {
             mobileWebUrl: window.location.href,
             webUrl: window.location.href,

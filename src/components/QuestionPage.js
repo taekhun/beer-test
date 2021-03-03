@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useState, useEffect } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import CSSreset from "styled-reset";
 import logoSrc from "../image/beer-logo.png";
 
 import QnA from "../assets/QnA.json";
+import LoadingPage from "./LoadingPage";
 
 const QuestionPage = () => {
   const [score, setScore] = useState({
@@ -16,10 +16,8 @@ const QuestionPage = () => {
     J_P: 0,
   });
   const [index, setIndex] = useState(0);
-  const history = useHistory();
+  const [loading, setLoading] = useState(false);
   const MAX_INDEX = QnA.length;
-
-  let result = "";
 
   //클릭시 score count && index++
   const answerClicked = (item) => {
@@ -32,64 +30,64 @@ const QuestionPage = () => {
     }
   };
 
-  //마지막에 score를 파라미터로 보냄
   useEffect(() => {
-    //마지막 index => result 페이지
-    if (index === MAX_INDEX) {
-      score.E_I < 2 ? (result += "E") : (result += "I");
-      score.S_N < 2 ? (result += "S") : (result += "N");
-      score.T_F < 2 ? (result += "T") : (result += "F");
-      score.J_P < 2 ? (result += "J") : (result += "P");
-      history.push(`/result/`, { params: result });
-    }
-
-    const carousel = document.querySelector("#carousel");
-
     //Carousel 슬라이드 이동
+    const carousel = document.querySelector("#carousel");
     carousel.style.transition = "all 0.5s ease-in-out";
     carousel.style.transform = `translateX(-${index}00%)`;
+
+    //마지막 index => Loading 페이지
+    if (index === MAX_INDEX) {
+      setLoading(true);
+    }
   }, [index]);
 
   return (
     <>
       <GlobalStyles />
-      <Container>
-        <InnerContainer>
-          <CarouselContainer id="carousel">
-            {QnA.map(({ index }) => {
-              return (
-                <CarouselBox>
-                  <Navbar>
-                    <QuestNumber>Q{index + 1}.</QuestNumber>
-                    <StatusBar>
-                      {index + 1}/{MAX_INDEX}
-                    </StatusBar>
-                  </Navbar>
-                  {index < MAX_INDEX && (
-                    <QABox>
-                      <Question>
-                        {/* {QnA[index].question.replace("\n", "\\r\\n")} */}
-                        {QnA[index].question}
-                      </Question>
-                      <Icon src={logoSrc} />
-                      <AnswerBox>
-                        {QnA[index].answers.map(({ answer, score }) => {
-                          return (
-                            <AnswerButton onClick={() => answerClicked(score)}>
-                              {answer}
-                            </AnswerButton>
-                          );
-                        })}
-                      </AnswerBox>
-                      {/* <BackButton /> */}
-                    </QABox>
-                  )}
-                </CarouselBox>
-              );
-            })}
-          </CarouselContainer>
-        </InnerContainer>
-      </Container>
+      {loading && <LoadingPage score={score} />}
+
+      {!loading && (
+        <Container>
+          <InnerContainer>
+            <CarouselContainer id="carousel">
+              {QnA.map(({ index }) => {
+                return (
+                  <CarouselBox>
+                    <Navbar>
+                      <QuestNumber>Q{index + 1}.</QuestNumber>
+                      <StatusBar>
+                        {index + 1}/{MAX_INDEX}
+                      </StatusBar>
+                    </Navbar>
+                    {index < MAX_INDEX && (
+                      <QABox>
+                        <Question>
+                          {/* {QnA[index].question.replace("\n", "\\r\\n")} */}
+                          {QnA[index].question}
+                        </Question>
+                        <Icon src={logoSrc} />
+                        <AnswerBox>
+                          {QnA[index].answers.map(({ answer, score }) => {
+                            return (
+                              <AnswerButton
+                                onClick={() => answerClicked(score)}
+                              >
+                                {answer}
+                              </AnswerButton>
+                            );
+                          })}
+                        </AnswerBox>
+                        {/* <BackButton /> */}
+                      </QABox>
+                    )}
+                  </CarouselBox>
+                );
+              })}
+            </CarouselContainer>
+          </InnerContainer>
+        </Container>
+      )}
     </>
   );
 };

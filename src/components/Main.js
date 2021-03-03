@@ -1,36 +1,33 @@
 import styled, { createGlobalStyle } from "styled-components";
 import CSSreset from "styled-reset";
-import { Link } from "react-router-dom";
 import beerLogoSrc from "../image/beer-logo.png";
-import { useEffect } from "react";
+import { useState } from "react";
 
-import KakaoShareButton from "./KakaoShareButton";
+import QuestionPage from "./QuestionPage";
 
 const Main = () => {
-  // useEffect(() => {
-  //   const script = document.createElement("script");
-  //   script.src = "https://developers.kakao.com/sdk/js/kakao.js";
-  //   script.async = true;
-  //   document.body.appendChild(script);
-  //   return () => {
-  //     document.body.removeChild(script);
-  //   };
-  // }, []);
+  const [isStarted, setStart] = useState(false);
 
   return (
     <>
       <GlobalStyles />
-      <Container>
-        <InnerContainer>
-          <Title>#맥주 테스트</Title>
-          <SubTitle>나와 닮은 맥주는?</SubTitle>
-          <Logo src={beerLogoSrc} />
-          <Link to="/start">
-            <StartButton>시작하기</StartButton>
-          </Link>
-        </InnerContainer>
-        {/* <KakaoShareButton /> */}
-      </Container>
+      {!isStarted && (
+        <Container>
+          <InnerContainer>
+            <Title>#맥주 테스트</Title>
+            <SubTitle>나와 닮은 맥주는?</SubTitle>
+            <Logo src={beerLogoSrc} />
+            <StartButton
+              onClick={() => {
+                setStart(true);
+              }}
+            >
+              시작하기
+            </StartButton>
+          </InnerContainer>
+        </Container>
+      )}
+      {isStarted && <QuestionPage />}
     </>
   );
 };

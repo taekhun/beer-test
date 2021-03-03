@@ -8,9 +8,10 @@ const App = () => {
   return (
     <Router>
       <Route exact path="/" component={Main} />
-      <Route path="/result" component={Result} />
-      {/* <Route path="/result/:id" component={Beers} /> */}
-      <Route path="/start" component={QuestionPage} />
+      {/* <Route path="/result" component={Result} />
+      <Route path="/result/:id" component={Beers} />
+      <Route path="/start" component={QuestionPage} /> */}
+      <Route path="/:id" component={Result} />
     </Router>
   );
 };

@@ -1,36 +1,21 @@
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import styled, { createGlobalStyle } from "styled-components";
 import CSSreset from "styled-reset";
 
-import Loader from "./LoadingBar/Loader";
 import KakaoShareButton from "./KakaoShareButton";
 import indicaSrc from "../image/indica.png";
 import logoSrc from "../image/beer-logo.png";
 
 const Result = () => {
-  const [isLoading, setLoading] = useState(false);
   let isValid = false;
   const history = useHistory();
   const location = useLocation();
-  let result = "";
 
-  try {
-    result = location.state.params;
-    isValid = true;
-  } catch (e) {
-    console.error(e);
-  }
+  let result = location.state.result;
+  console.log(result);
 
-  useEffect(() => {
-    //로딩 3초후 결과화면
-    setTimeout(() => {
-      history.push(`/result/${result}`);
-      setLoading(true);
-    }, 5000);
-  }, []);
   return (
     <>
       {/* {!isValid && history.push("/")} */}
@@ -44,20 +29,15 @@ const Result = () => {
             <Logo src={logoSrc} />
             {/* <Title>#수제맥주 테스트</Title> */}
           </Header>
-          {!isLoading ? (
-            <LoadingPage>
-              <Loader />
-            </LoadingPage>
-          ) : (
-            <ResultPage>
-              <BeerImg src={indicaSrc} />
-              <BeerSubtitle />
-              <BeerDesc />
-              <ShareBox>
-                <KakaoShareButton />
-              </ShareBox>
-            </ResultPage>
-          )}
+          <ResultPage>
+            <BeerImg src={indicaSrc} />
+            <BeerTitle>{result}</BeerTitle>
+            <BeerSubtitle />
+            <BeerDesc />
+            <ShareBox>
+              <KakaoShareButton />
+            </ShareBox>
+          </ResultPage>
         </InnerContainer>
       </Container>
     </>
@@ -91,16 +71,6 @@ const Title = styled.h1`
   font-size: 28px;
   margin-left: 12px;
 `;
-
-//Loading Page
-const LoadingPage = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 100px;
-`;
-const LoadingImg = styled.img``;
-const LoadingTitle = styled.h1``;
 
 //Result Page
 const ResultPage = styled.div`
