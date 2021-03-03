@@ -9,16 +9,12 @@ import indicaSrc from "../image/indica.png";
 import logoSrc from "../image/beer-logo.png";
 
 const Result = () => {
-  let isValid = false;
   const history = useHistory();
   const location = useLocation();
-
   let result = location.state.result;
-  console.log(result);
 
   return (
     <>
-      {/* {!isValid && history.push("/")} */}
       <GlobalStyles />
       <Helmet>
         <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -35,7 +31,7 @@ const Result = () => {
             <BeerSubtitle />
             <BeerDesc />
             <ShareBox>
-              <KakaoShareButton />
+              <KakaoShareButton beerInfo={result} />
             </ShareBox>
           </ResultPage>
         </InnerContainer>

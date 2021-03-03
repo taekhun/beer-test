@@ -1,7 +1,8 @@
 import React from "react";
-import Loader from "./LoadingBar/Loader";
+import Loader from "./Loading/Loader";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
+import styled from "styled-components";
 
 const LoadingPage = (props) => {
   const history = useHistory();
@@ -19,7 +20,31 @@ const LoadingPage = (props) => {
     }, 5000);
   }, []);
 
-  return <h1>Loading</h1>;
+  return (
+    <Container>
+      <InnerContainer>
+        <Title>Loading...</Title>
+        <Loader />
+      </InnerContainer>
+    </Container>
+  );
 };
+
+const Container = styled.div`
+  margin: 0 auto;
+`;
+
+const InnerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  height: 670px;
+`;
+
+const Title = styled.h1`
+  font-size: 32px;
+`;
 
 export default LoadingPage;

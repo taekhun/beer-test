@@ -17,7 +17,8 @@ const QuestionPage = () => {
   });
   const [index, setIndex] = useState(0);
   const [loading, setLoading] = useState(false);
-  const MAX_INDEX = QnA.length;
+  // const MAX_INDEX = QnA.length;
+  const MAX_INDEX = 2;
 
   //클릭시 score count && index++
   const answerClicked = (item) => {
